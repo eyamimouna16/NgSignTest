@@ -1,0 +1,55 @@
+<div class="card-container">
+  <div class="card">
+    <h2 class="card-title">Liste des Utilisateurs</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Nom</th>
+          <th scope="col">Prénom</th>
+          <th scope="col">Email</th>
+          <th scope="col">Numéro de Téléphone</th>
+          <th scope="col">Titre de poste</th>
+          <th scope="col">Adresse</th>
+          <th scope="col">Date de naissance</th>
+          <th scope="col"></th>
+          
+          <th scope="col"></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users" class="table-row">
+          <td>{{ user.firstName }}</td>
+          <td>{{ user.lastName }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.phone }}</td>
+          <td>{{ user.jobTitle }}</td>
+          <td>{{ user.address }}</td>
+          <td>{{ user.dateOfBirth }}</td>
+          <td>
+            <button class="btn " style="background-color:#FF8C00 ;
+            color: #F0F0F0;"(click)="openPopup(user)">Delete</button>
+            <i class="fa fa-trash" aria-hidden="true"></i>
+          </td>
+          <td>
+            <button class="btn " style="background-color: #FFD700;
+            color: #FFFFFF;"(click)="viewUserDetails(user)">Consulter</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+   
+    <app-delete-popup 
+      [isVisible]="isPopupVisible" 
+      [userToDelete]="userToDelete" 
+      (close)="closePopup()" 
+      (confirmDelete)="onConfirmDelete($event)">
+    </app-delete-popup>
+    <app-user-detail
+  [isVisible]="isDetailsPopupVisible"
+  [userDetails]="selectedUser"
+  (close)="closeDetailsPopup()">
+</app-user-detail>
+  </div>
+</div>

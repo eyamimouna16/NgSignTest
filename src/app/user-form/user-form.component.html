@@ -1,0 +1,61 @@
+<div class="container mt-5">
+   <div class="card">
+     <div class="card-header text-white  "style="background-color: #f77700;">
+       <h5>Créer ou Éditer un Utilisateur</h5>
+     </div>
+     <div class="card-body">
+       <form #addForm="ngForm" (ngSubmit)="onAddUser(addForm)">
+         <div class="form-group">
+           <label for="firstName">Prénom</label>
+           <input type="text" ngModel name="firstName" class="form-control" id="firstName" placeholder="Entrez le prénom" required>
+         
+          </div>
+         <div class="form-group">
+           <label for="lastName">Nom</label>
+           <input type="text" ngModel name="lastName" class="form-control" id="lastName" placeholder="Entrez le nom" required>
+         </div>
+         
+         <div class="form-group">
+          <label for="email">Adresse Email</label>
+          <input 
+            type="email" 
+            ngModel 
+            name="email" 
+            class="form-control" 
+            id="email" 
+            placeholder="Entrez l'adresse email" 
+            required
+          >
+
+          <div *ngIf="addForm.controls['email']?.invalid && (addForm.controls['email']?.touched || addForm.controls['email']?.dirty)" class="text-danger">
+            <small *ngIf="addForm.controls['email']?.errors?.['required']">L'adresse email est requise.</small>
+            <small *ngIf="addForm.controls['email']?.errors?.['email']">L'adresse email n'est pas valide.</small>
+        </div>
+        </div>
+        
+         <div class="form-group">
+           <label for="jobTitle">Titre du Poste</label>
+           <input type="text" ngModel name="jobTitle" class="form-control" id="jobTitle" placeholder="Entrez le titre du poste" required>
+         </div>
+         <div class="form-group">
+           <label for="phone">Numéro de Téléphone</label>
+           <input type="text" ngModel name="phone" class="form-control" id="phone" placeholder="Entrez le numéro de téléphone" required>
+         </div>
+         <div class="form-group">
+           <label for="address">Adresse</label>
+           <input type="text" ngModel name="address" class="form-control" id="address" placeholder="Entrez l'adresse" required>
+         </div>
+         <div class="form-group">
+           <label for="dateOfBirth">Date de Naissance</label>
+           <input type="date" ngModel name="dateOfBirth" class="form-control" id="dateOfBirth" required>
+         </div>
+ 
+         <div class="modal-footer" style="margin-top: 30px;">
+           <button type="button" class="btn btn-secondary" routerLink="/">Annuler</button>
+           <button [disabled]="addForm.invalid" type="submit" class="btn " style="background-color: #f77700;margin-left: 20px;">Sauvegarder</button>
+         </div>
+       </form>
+     </div>
+   </div>
+ </div>
+ 
